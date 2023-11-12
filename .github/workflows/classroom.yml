@@ -67,7 +67,7 @@ jobs:
       - name: creating test badges
         run: |
           for value in $(echo '${{ steps.autograder.outputs.jsonresults}}' | jq -r '.[]'); do
-          # echo $value
+          echo $value
           done
           ls -la
 
