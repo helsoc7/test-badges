@@ -68,8 +68,8 @@ jobs:
         run: |
           for value in $(echo '${{ steps.autograder.outputs.jsonresults}}' | jq -r '.[]'); do
           # echo $value
-          ls -la
           done
+          ls -la
 
       - name: Upload badge as artifact
         uses: actions/upload-artifact@v2
