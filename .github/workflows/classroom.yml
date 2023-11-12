@@ -54,11 +54,11 @@ jobs:
         run: |
           git checkout badges 2>/dev/null || git checkout -b badges
           mkdir -p .github/badges
-      - name: points badge
+      - name: test badge
         uses: emibcn/badge-action@v1
         with:
           LABEL: 'Points'
-          STATUS: ${{ steps.autograder.outputs.points }}
+          STATUS: ${{ steps.autograder.outputs.test[1] }}
           COLOR: cyan
           path: '.github/badges/points.svg'
       - name: Upload badge as artifact
