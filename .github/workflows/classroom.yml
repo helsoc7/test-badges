@@ -67,7 +67,7 @@ jobs:
       - name: creating test badges
         run: |
           for test_result in $(seq 1 3);  do
-          echo ${test_result} 
+          echo ${{steps.autograder.outputs.jsonresults}}
           done;
 
       - name: Upload badge as artifact
