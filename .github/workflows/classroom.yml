@@ -65,8 +65,8 @@ jobs:
           COLOR: cyan
           path: '.github/badges/points.svg'
       - name: creating test badges
-        uses: emibcn/badge-action@v1
         run: |
+          git clone https://github.com/emibcn/badge-action.git
           for value in $(echo '${{ steps.autograder.outputs.jsonresults}}' | jq -r '.[]'); do
           echo $value
           done
