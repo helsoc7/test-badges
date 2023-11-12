@@ -57,32 +57,13 @@ jobs:
         run: |
           git checkout badges 2>/dev/null || git checkout -b badges
           mkdir -p .github/badges
-      - name: create badge
+      - name: test badge
         uses: emibcn/badge-action@v1
         with:
           LABEL: 'Points'
-          STATUS: ${{ steps.autograder.outputs.percentage }}
+          STATUS: ${{ steps.autograder.outputs.test1 }}
           COLOR: cyan
           path: '.github/badges/points.svg'
-      - name: test badges
-        run: |
-          for test_result in "${{ steps.autograder.outputs.test* }}"; do
-          echo "Test result: $test_result"
-      
-          # Erstelle ein Badge für jedes Element
-          uses: emibcn/badge-action@v1
-          with:
-            LABEL: "Points"
-            STATUS: "$test_result"
-            COLOR: cyan
-            path: ".github/badges/points_${test_result}.svg"
-          # Lade jedes Badge als Artefakt hoch
-          uses: actions/upload-artifact@v2
-          with:
-            name: "badge_${test_result}"
-            path: ".github/badges/points_${test_result}.svg"
-            if-no-files-found: error
-          done
       - name: Upload badge as artifact
         uses: actions/upload-artifact@v2
         with:
@@ -93,7 +74,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add '.github/badges/**/*' 
+          git add '.github/badges/points.svg'
           git commit -m "Add/Update badge"
         continue-on-error: true
       - name: Push badge commit
