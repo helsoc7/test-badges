@@ -61,7 +61,7 @@ jobs:
         uses: emibcn/badge-action@v1
         with:
           LABEL: 'Points'
-          STATUS: ${{ steps.autograder.outputs.test1 }}
+          STATUS: ${{ steps.autograder.outputs.jsonresults }}
           COLOR: cyan
           path: '.github/badges/points.svg'
       - name: Upload badge as artifact
