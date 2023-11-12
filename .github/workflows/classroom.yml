@@ -66,7 +66,7 @@ jobs:
           path: '.github/badges/points.svg'
       - name: test badges
         run: |
-          for test_result in "${{ steps.autograder.outputs.test[@] }}"; do
+          for test_result in "${{ steps.autograder.outputs.test@ }}"; do
           echo "Test result: $test_result"
       
           # Erstelle ein Badge für jedes Element
