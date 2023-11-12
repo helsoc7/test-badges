@@ -66,6 +66,10 @@ jobs:
           path: '.github/badges/points.svg'
       - name: creating test badges
         run: |
+          for value in $(echo '${{ steps.autograding.outputs.jsonresults}}' | jq -r '.[]'); do
+          echo $value
+          done
+          exit
           TEST1=$(echo '${{steps.autograder.outputs.jsonresults}}' | jq -c '. | values')
           echo $TEST1
           exit
