@@ -57,13 +57,19 @@ jobs:
         run: |
           git checkout badges 2>/dev/null || git checkout -b badges
           mkdir -p .github/badges
-      - name: test badge
+      - name: score badge
         uses: emibcn/badge-action@v1
         with:
           LABEL: 'Points'
-          STATUS: ${{ steps.autograder.outputs.jsonresults }}
+          STATUS: ${{ steps.autograder.outputs.percentages }}
           COLOR: cyan
           path: '.github/badges/points.svg'
+      - name: creating test badges
+        run: |
+          for test_result in $(seq 1 2 3);  do
+          echo ${test_result} 
+          done;
+
       - name: Upload badge as artifact
         uses: actions/upload-artifact@v2
         with:
