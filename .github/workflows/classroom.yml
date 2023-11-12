@@ -67,13 +67,8 @@ jobs:
       - name: creating test badges
         run: |
           for value in $(echo '${{ steps.autograder.outputs.jsonresults}}' | jq -r '.[]'); do
-          uses: emibcn/badge-action@v1
-          with:
-            LABEL: 'Points'
-            STATUS: $value
-            COLOR: cyan
-            path: '.github/badges/tests.svg'
           # echo $value
+          ls -la
           done
 
       - name: Upload badge as artifact
